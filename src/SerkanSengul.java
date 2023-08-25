@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
+import java.util.List;
 
 public class SerkanSengul extends BaseDriver {
     @Test
@@ -31,7 +32,7 @@ public class SerkanSengul extends BaseDriver {
         LastName.sendKeys("sengul");
 
         WebElement Email = driver.findElement(By.id("Email"));
-        Email.sendKeys("aserar111231@gmail.com");
+        Email.sendKeys("tteck123@gmail.com");
 
         WebElement password = driver.findElement(By.id("Password"));
         password.sendKeys("kobe21tmac");
@@ -93,15 +94,15 @@ public class SerkanSengul extends BaseDriver {
         Adress.sendKeys("Cigli");
         MyFunc.wait(1);
 
-        WebElement Adress1 = driver.findElement(By.cssSelector("[class='text-box single-line valid']"));
-        Adress1.sendKeys("hamdi");
+        WebElement Adress1 = driver.findElement(By.id("BillingNewAddress_Address2"));
+        Adress1.sendKeys("Cigli");
         MyFunc.wait(1);
 
         WebElement ZipPostalCode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
         ZipPostalCode.sendKeys("35000");
         MyFunc.wait(1);
 
-        WebElement PhoneNumber = driver.findElement(By.id("name=BillingNewAddress.PhoneNumber"));
+        WebElement PhoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
         PhoneNumber.sendKeys("5555202020");
         MyFunc.wait(1);
 
@@ -120,7 +121,57 @@ public class SerkanSengul extends BaseDriver {
         WebElement VisibleText = driver.findElement(By.xpath("(//div[@style='display: none;'])[1]"));
         MyFunc.wait(1);
 
-        Assert.assertTrue(VisibleText.isDisplayed());
+        Assert.assertFalse(VisibleText.isDisplayed());
+        MyFunc.wait(1);
+
+
+        WebElement Button = driver.findElement(By.cssSelector("[onclick='Shipping.save()']"));
+        Button.click();
+        MyFunc.wait(1);
+
+        WebElement Cash = driver.findElement(By.cssSelector("[id='paymentmethod_0']"));
+        Cash.click();
+        MyFunc.wait(1);
+
+        WebElement OnClick = driver.findElement(By.cssSelector("[onclick='PaymentMethod.save()']"));
+        OnClick.click();
+        MyFunc.wait(1);
+
+        WebElement Payment = driver.findElement(By.xpath("//div[@class='info']/*/*/*/*/*"));
+        Assert.assertTrue(Payment.isDisplayed());
+
+        WebElement click = driver.findElement(By.cssSelector("[onclick='PaymentInfo.save()']"));
+        click.click();
+        MyFunc.wait(1);
+
+        List<WebElement> price = driver.findElements(By.xpath("(//span[@class='product-price'])"));
+        double toplam = 0;
+        for (WebElement t : price) {
+            System.out.println("t.getText() = " + t.getText());
+            toplam += Double.parseDouble(t.getText().replaceAll("[^0-9,.]", ""));
+        }
+
+        System.out.println("toplam = " + toplam);
+        WebElement ProductPriceTotal = driver.findElement(By.cssSelector("[class='product-price order-total']"));
+
+        Double itemtotal=Double.parseDouble(ProductPriceTotal.getText().replaceAll("[^0-9,.]",""));
+
+        System.out.println("itemtotal = " + itemtotal);
+
+        Assert.assertTrue("Değerler eşit değil",toplam==itemtotal);
+
+        MyFunc.wait(1);
+        WebElement confrim= driver.findElement(By.cssSelector("[onclick='ConfirmOrder.save()']"));
+        confrim.click();
+        MyFunc.wait(1);
+
+        WebElement ConfrimShopping= driver.findElement(By.xpath("//div[@class='title']/*"));
+        Assert.assertTrue(ConfrimShopping.isDisplayed());
+
+        WebElement Continue2= driver.findElement(By.cssSelector("[type='button']"));
+        Continue2.click();
+
+
 
 
     }
