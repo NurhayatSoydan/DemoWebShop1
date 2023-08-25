@@ -50,7 +50,7 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement registerCheck = driver.findElement(By.xpath("//div[@class='result']"));
 
-        Assert.assertTrue(registerCheck.getText().contains(registerConfirm));
+        Assert.assertTrue("Bilgiler doğru girilmesine rağmen yeni hesap oluşturulamadı. Test FAILED.", registerCheck.getText().contains(registerConfirm));
 
         System.out.println("\u001B[94mCreateAccountPositive = \u001B[0m" + "\u001B[32m" + "Hesap bilgileri başarılı bir şekilde girildi." + "\u001B[0m");
         System.out.println("\u001B[94mCreateAccountPositive = \u001B[0m" + "\u001B[32m" + "Hesap başarıyla oluşturuldu." + "\u001B[0m");
@@ -103,7 +103,7 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement registerCheck = driver.findElement(By.xpath("//*[text()='The specified email already exists']"));
 
-        Assert.assertTrue(registerCheck.getText().contains(registerConfirm));
+        Assert.assertTrue("Aynı e-mail ile kayıt olunmasına rağmen ekrana uyarı gelmedi. Test FAILED.", registerCheck.getText().contains(registerConfirm));
 
         System.out.println("\u001B[94mCreateAccountNegative = \u001B[0m" + "\u001B[32m" + "Hesap bilgileri başarılı bir şekilde girildi." + "\u001B[0m");
         System.out.println("\u001B[94mCreateAccountNegative = \u001B[0m" + "\u001B[32m" + "Girilen e-mail sistemde mevcut uyarısı ekrana geldi." + "\u001B[0m");
