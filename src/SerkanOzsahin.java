@@ -46,6 +46,7 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement submitBtn = driver.findElement(By.id("register-button"));
         submitBtn.click();
+        MyFunc.wait(1);
 
         WebElement registerCheck = driver.findElement(By.xpath("//div[@class='result']"));
 
@@ -98,6 +99,7 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement submitBtn = driver.findElement(By.id("register-button"));
         submitBtn.click();
+        MyFunc.wait(1);
 
         WebElement registerCheck = driver.findElement(By.xpath("//*[text()='The specified email already exists']"));
 
