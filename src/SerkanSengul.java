@@ -263,7 +263,7 @@ public class SerkanSengul extends BaseDriver {
 
     @Test
     public void UrunEklendiktenSonraAlisVeriseDevamEtme() {
-        Actions actions = new Actions(driver);
+
         driver.get("https://demowebshop.tricentis.com/");
         WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
         Login.click();
@@ -303,4 +303,50 @@ public class SerkanSengul extends BaseDriver {
         BekleVeKapat();
     }
 
+    @Test
+    public void RECENTLY_VIEWED_PRODUCTS() {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
+        Login.click();
+
+        WebElement Email = driver.findElement(By.name("Email"));
+        Email.sendKeys("serkansengul2@gmail.com");
+
+        WebElement passowrd = driver.findElement(By.id("Password"));
+        passowrd.sendKeys("kobe21tmac");
+
+        WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
+        Login2.click();
+        MyFunc.wait(1);
+
+        WebElement Computer = driver.findElement(By.cssSelector("[src='https://demowebshop.tricentis.com" +
+                "/content/images/thumbs/0000224_141-inch-laptop_125.png']"));
+        Computer.click();
+
+        driver.navigate().back();
+
+        WebElement WiewProduct = driver.findElement(By.cssSelector("[href='/recentlyviewedproducts']"));
+        WiewProduct.click();
+
+        driver.navigate().back();
+
+
+        WebElement Pc = driver.findElement(By.cssSelector("[src='https://demowebshop.tricentis.com/content/images/thumbs" +
+                "/0000201_build-your-own-expensive-computer_125.jpeg']"));
+
+        Pc.click();
+
+        WebElement WievProduct2 = driver.findElement(By.cssSelector("[href='/recentlyviewedproducts']"));
+        WievProduct2.click();
+
+        List<WebElement> Products = driver.findElements(By.cssSelector("[class='item-box']"));
+        for (WebElement Po : Products) {
+            System.out.println("Po.getText() = " + Po.getText());
+        }
+        BekleVeKapat();
+
+    }
 }
+
+
+
