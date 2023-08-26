@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
@@ -212,8 +213,6 @@ public class SerkanSengul extends BaseDriver {
         Robot robot = new Robot();
 
 
-
-
         for (int i = 0; i < 26; i++) {
             robot.keyPress(KeyEvent.VK_TAB);
             robot.keyRelease(KeyEvent.VK_TAB);
@@ -225,4 +224,40 @@ public class SerkanSengul extends BaseDriver {
 
     }
 
+    @Test
+    public void AnketYanitlama() {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
+        Login.click();
+
+        WebElement Email = driver.findElement(By.name("Email"));
+        Email.sendKeys("serkansengul2@gmail.com");
+
+        WebElement passowrd = driver.findElement(By.id("Password"));
+        passowrd.sendKeys("kobe21tmac");
+
+        WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
+        Login2.click();
+        MyFunc.wait(1);
+
+        driver.navigate().back();
+        driver.navigate().back();
+
+        WebElement Answer = driver.findElement(By.id("pollanswers-1"));
+        Answer.click();
+        MyFunc.wait(1);
+
+        WebElement Vote = driver.findElement(By.id("vote-poll-1"));
+        Vote.click();
+
+
+
+        List<WebElement> Results = driver.findElements(By.xpath("//ul[@class='poll-results']/*"));
+        for (WebElement re : Results) {
+            wait.until(ExpectedConditions.visibilityOfAllElements(re));
+            System.out.println("Results = " + re.getText());
+        }
+
+
+    }
 }
