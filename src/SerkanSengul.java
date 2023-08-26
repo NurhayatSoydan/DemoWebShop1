@@ -222,6 +222,7 @@ public class SerkanSengul extends BaseDriver {
         robot.keyPress(KeyEvent.VK_SPACE);
         robot.keyRelease(KeyEvent.VK_SPACE);
 
+        BekleVeKapat();
     }
 
     @Test
@@ -251,13 +252,55 @@ public class SerkanSengul extends BaseDriver {
         Vote.click();
 
 
-
         List<WebElement> Results = driver.findElements(By.xpath("//ul[@class='poll-results']/*"));
         for (WebElement re : Results) {
             wait.until(ExpectedConditions.visibilityOfAllElements(re));
             System.out.println("Results = " + re.getText());
         }
 
-
+        BekleVeKapat();
     }
+
+    @Test
+    public void UrunEklendiktenSonraAlisVeriseDevamEtme() {
+        Actions actions = new Actions(driver);
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
+        Login.click();
+
+        WebElement Email = driver.findElement(By.name("Email"));
+        Email.sendKeys("serkansengul2@gmail.com");
+
+        WebElement passowrd = driver.findElement(By.id("Password"));
+        passowrd.sendKeys("kobe21tmac");
+
+        WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
+        Login2.click();
+        MyFunc.wait(1);
+
+        WebElement ShoppingCart = driver.findElement(By.xpath("(//a[@href='/cart'])[1]"));
+        ShoppingCart.click();
+
+        WebElement ContinueShopping = driver.findElement(By.name("continueshopping"));
+        ContinueShopping.click();
+
+        WebElement Books = driver.findElement(By.xpath("(//a[@href='/books'])[3]"));
+        Books.click();
+
+        WebElement ClickBook = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
+        ClickBook.click();
+
+
+        WebElement ShoppingCartRe = driver.findElement(By.xpath("(//span[@class='cart-label'])[1]"));
+        ShoppingCartRe.click();
+
+
+        List<WebElement> Products = driver.findElements(By.cssSelector("[class='cart-item-row']"));
+        for (WebElement po : Products) {
+            System.out.println("Products = " + po.getText());
+        }
+
+        BekleVeKapat();
+    }
+
 }
