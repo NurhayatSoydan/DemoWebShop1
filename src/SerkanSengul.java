@@ -1,15 +1,20 @@
 import Utility.BaseDriver;
 import Utility.My.MyFunc;
 import com.google.j2objc.annotations.Weak;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class SerkanSengul extends BaseDriver {
@@ -154,25 +159,70 @@ public class SerkanSengul extends BaseDriver {
         System.out.println("toplam = " + toplam);
         WebElement ProductPriceTotal = driver.findElement(By.cssSelector("[class='product-price order-total']"));
 
-        Double itemtotal=Double.parseDouble(ProductPriceTotal.getText().replaceAll("[^0-9,.]",""));
+        Double itemtotal = Double.parseDouble(ProductPriceTotal.getText().replaceAll("[^0-9,.]", ""));
 
         System.out.println("itemtotal = " + itemtotal);
 
-        Assert.assertTrue("Değerler eşit değil",toplam==itemtotal);
+        Assert.assertTrue("Değerler eşit değil", toplam == itemtotal);
 
         MyFunc.wait(1);
-        WebElement confrim= driver.findElement(By.cssSelector("[onclick='ConfirmOrder.save()']"));
+        WebElement confrim = driver.findElement(By.cssSelector("[onclick='ConfirmOrder.save()']"));
         confrim.click();
         MyFunc.wait(1);
 
-        WebElement ConfrimShopping= driver.findElement(By.xpath("//div[@class='title']/*"));
+        WebElement ConfrimShopping = driver.findElement(By.xpath("//div[@class='title']/*"));
         Assert.assertTrue(ConfrimShopping.isDisplayed());
 
-        WebElement Continue2= driver.findElement(By.cssSelector("[type='button']"));
+        WebElement Continue2 = driver.findElement(By.cssSelector("[type='button']"));
         Continue2.click();
 
 
-
+        BekleVeKapat();
 
     }
+
+    @Test
+    public void SiparisIndirme() throws AWTException {
+        driver.get("https://demowebshop.tricentis.com/");
+        WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
+        Login.click();
+
+        WebElement Email = driver.findElement(By.name("Email"));
+        Email.sendKeys("serkansengul2@gmail.com");
+
+        WebElement passowrd = driver.findElement(By.id("Password"));
+        passowrd.sendKeys("kobe21tmac");
+
+        WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
+        Login2.click();
+
+        WebElement Account = driver.findElement(By.xpath("(//a[@href='/customer/info'])[1]"));
+        Account.click();
+
+        WebElement Orders = driver.findElement(By.xpath("(//a[@href='/customer/orders'])[1]"));
+        Orders.click();
+
+        MyFunc.wait(1);
+        WebElement Details = driver.findElement(By.cssSelector("[class='button-2 order-details-button']"));
+        Details.click();
+
+        WebElement PDFDocument = driver.findElement(By.cssSelector("[href='/orderdetails/pdf/1500149']"));
+        PDFDocument.click();
+
+        Robot robot = new Robot();
+
+
+
+
+        for (int i = 0; i < 26; i++) {
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+
+        }
+        MyFunc.wait(2);
+        robot.keyPress(KeyEvent.VK_SPACE);
+        robot.keyRelease(KeyEvent.VK_SPACE);
+
+    }
+
 }
