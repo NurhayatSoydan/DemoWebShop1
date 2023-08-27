@@ -20,7 +20,7 @@ import java.util.List;
 
 public class SerkanSengul extends BaseDriver {
     @Test
-    public void Test() {
+    public void SiparisVerme() {
 
         driver.get("https://demowebshop.tricentis.com/");
         Actions actions = new Actions(driver);
@@ -38,7 +38,7 @@ public class SerkanSengul extends BaseDriver {
         LastName.sendKeys("sengul");
 
         WebElement Email = driver.findElement(By.id("Email"));
-        Email.sendKeys("tteck123@gmail.com");
+        Email.sendKeys("has123@gmail.com");
 
         WebElement password = driver.findElement(By.id("Password"));
         password.sendKeys("kobe21tmac");
@@ -49,9 +49,12 @@ public class SerkanSengul extends BaseDriver {
         WebElement registerbutton = driver.findElement(By.id("register-button"));
         registerbutton.click();
 
-        driver.navigate().back();
-        driver.navigate().back();
         MyFunc.wait(1);
+
+        WebElement registerbtn= driver.findElement(By.xpath("(//input[@type='button'])[2]"));
+        registerbtn.click();
+        MyFunc.wait(1);
+
 
         WebElement addProduct = driver.findElement(By.cssSelector("[alt='Picture of 14.1-inch Laptop']"));
         addProduct.click();
@@ -62,15 +65,15 @@ public class SerkanSengul extends BaseDriver {
 
         WebElement ShoppingList = driver.findElement(By.xpath("(//span[@class='cart-label'])[1]"));
         ShoppingList.click();
-        MyFunc.wait(1);
+        MyFunc.wait(2);
 
         WebElement agreebutton = driver.findElement(By.cssSelector("[id='termsofservice']"));
         agreebutton.click();
-        MyFunc.wait(1);
+        MyFunc.wait(2);
 
         WebElement Checkout = driver.findElement(By.id("checkout"));
         Checkout.click();
-        MyFunc.wait(1);
+        MyFunc.wait(2);
 
 
         WebElement Company = driver.findElement(By.id("BillingNewAddress_Company"));
@@ -346,7 +349,12 @@ public class SerkanSengul extends BaseDriver {
         BekleVeKapat();
 
     }
+
+
+
 }
+
+
 
 
 
