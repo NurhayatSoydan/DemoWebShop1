@@ -251,4 +251,68 @@ public class SerkanOzsahin extends BaseDriver {
 
         BekleVeKapat();
     }
+
+    @Test
+    public void ChangePassword() {
+
+        String Id = "ozsserkan459@gmail.com";
+        String enterPassword = "123qwe";
+        String enterNewPassword = "456rty";
+        String passwordChangeText = "Password was changed";
+
+        driver.get("https://demowebshop.tricentis.com/");
+        MyFunc.wait(1);
+
+        WebElement logInBtn = driver.findElement(By.className("ico-login"));
+        logInBtn.click();
+        MyFunc.wait(1);
+
+        WebElement eMail = driver.findElement(By.id("Email"));
+        eMail.sendKeys(Id);
+        MyFunc.wait(1);
+
+        WebElement passWord = driver.findElement(By.id("Password"));
+        passWord.sendKeys(enterPassword);
+        MyFunc.wait(1);
+
+        WebElement logInBtn2 = driver.findElement(By.xpath(("(//input[@type='submit'])[2]")));
+        logInBtn2.click();
+        MyFunc.wait(1);
+
+        WebElement myAcc = driver.findElement(By.xpath("(//a[@href='/customer/info'])[1]"));
+        myAcc.click();
+        MyFunc.wait(1);
+
+        WebElement changePassword = driver.findElement(By.xpath("//a[text()='Change password']"));
+        changePassword.click();
+        MyFunc.wait(1);
+
+        WebElement oldPassword = driver.findElement(By.id("OldPassword"));
+        oldPassword.sendKeys(enterPassword);
+        MyFunc.wait(1);
+
+        WebElement newPassword = driver.findElement(By.id("NewPassword"));
+        newPassword.sendKeys(enterNewPassword);
+        MyFunc.wait(1);
+
+        WebElement confirmNewPassword = driver.findElement(By.id("ConfirmNewPassword"));
+        confirmNewPassword.sendKeys(enterNewPassword);
+        MyFunc.wait(1);
+
+        WebElement changePasswordBtn = driver.findElement(By.xpath("//input[@value='Change password']"));
+        changePasswordBtn.click();
+        MyFunc.wait(1);
+
+        WebElement passwordChangeConfirm = driver.findElement(By.className("result"));
+        MyFunc.wait(1);
+
+        Assert.assertTrue("Şifre değiştirilemedi. Test FAILED.", passwordChangeConfirm.getText().contains(passwordChangeText));
+
+        System.out.println("\u001B[94mChangePassword = \u001B[0m" + "\u001B[32m" + "Hesap bilgileri başarılı bir şekilde girildi." + "\u001B[0m");
+        System.out.println("\u001B[94mChangePassword = \u001B[0m" + "\u001B[32m" + "Yeni şifre yazıldı." + "\u001B[0m");
+        System.out.println("\u001B[94mChangePassword = \u001B[0m" + "\u001B[32m" + "Şifreniz değişti yazısı ekrana geldi." + "\u001B[0m");
+        System.out.println("\u001B[32m" + "Test PASSED." + "\u001B[0m");
+
+        BekleVeKapat();
+    }
 }
