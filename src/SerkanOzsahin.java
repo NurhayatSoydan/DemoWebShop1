@@ -203,27 +203,30 @@ public class SerkanOzsahin extends BaseDriver {
         WebElement country = driver.findElement(By.id("BillingNewAddress_CountryId"));
         MyFunc.wait(1);
 
-        Select ddMenu = new Select(country);
-        MyFunc.wait(1);
+        if (country.isDisplayed()) {
 
-        ddMenu.selectByVisibleText("Turkey");
-        MyFunc.wait(1);
+            Select ddMenu = new Select(country);
+            MyFunc.wait(1);
 
-        WebElement city = driver.findElement(By.id("BillingNewAddress_City"));
-        city.sendKeys("İstanbul");
-        MyFunc.wait(1);
+            ddMenu.selectByVisibleText("Turkey");
+            MyFunc.wait(1);
 
-        WebElement adress = driver.findElement(By.id("BillingNewAddress_Address1"));
-        adress.sendKeys("Ataköy");
-        MyFunc.wait(1);
+            WebElement city = driver.findElement(By.id("BillingNewAddress_City"));
+            city.sendKeys("İstanbul");
+            MyFunc.wait(1);
 
-        WebElement zipCode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
-        zipCode.sendKeys("0034");
-        MyFunc.wait(1);
+            WebElement adress = driver.findElement(By.id("BillingNewAddress_Address1"));
+            adress.sendKeys("Ataköy");
+            MyFunc.wait(1);
 
-        WebElement phoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
-        phoneNumber.sendKeys("000122333");
-        MyFunc.wait(1);
+            WebElement zipCode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
+            zipCode.sendKeys("0034");
+            MyFunc.wait(1);
+
+            WebElement phoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
+            phoneNumber.sendKeys("000122333");
+            MyFunc.wait(1);
+        }
 
         for (int i = 1; i <= 5; i++) {
 
@@ -241,7 +244,7 @@ public class SerkanOzsahin extends BaseDriver {
         Assert.assertTrue(confirmMsg.getText().contains(orderCheck));
 
         System.out.println("\u001B[94mGiftCard = \u001B[0m" + "\u001B[32m" + "Hesap bilgileri başarılı bir şekilde girildi." + "\u001B[0m");
-        System.out.println("\u001B[94mGiftCard = \u001B[0m" + "\u001B[32m" + "Seçtiğim ürün ile sepetimdeki ürün aynı." + "\u001B[0m");
+        System.out.println("\u001B[94mGiftCard = \u001B[0m" + "\u001B[32m" + "Seçilen ürün ile sepetteki ürünün aynı olduğu kontrol edildi." + "\u001B[0m");
         System.out.println("\u001B[94mGiftCard = \u001B[0m" + "\u001B[32m" + "Yanlış kupon girdiniz uyarısı ekrana geldi." + "\u001B[0m");
         System.out.println("\u001B[94mGiftCard = \u001B[0m" + "\u001B[32m" + "Siparişiniz onaylandı yazısı ekrana geldi." + "\u001B[0m");
         System.out.println("\u001B[32m" + "Test PASSED." + "\u001B[0m");
