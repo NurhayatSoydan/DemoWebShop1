@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class SerkanOzsahin extends BaseDriver {
@@ -49,7 +50,8 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement submitBtn = driver.findElement(By.id("register-button"));
         submitBtn.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='result']")));
 
         WebElement registerCheck = driver.findElement(By.xpath("//div[@class='result']"));
 
@@ -102,7 +104,8 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement submitBtn = driver.findElement(By.id("register-button"));
         submitBtn.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
 
         WebElement registerCheck = driver.findElement(By.xpath("//*[text()='The specified email already exists']"));
 
@@ -160,7 +163,8 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement addToBtn = driver.findElement(By.cssSelector("[value='Add to cart']"));
         addToBtn.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("content")));
 
         WebElement myCart = driver.findElement(By.xpath("//span[text()='Shopping cart']"));
         myCart.click();
@@ -177,10 +181,10 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement applyCoupon = driver.findElement(By.name("applydiscountcouponcode"));
         applyCoupon.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("message")));
 
         WebElement couponText = driver.findElement(By.className("message"));
-        MyFunc.wait(1);
 
         Assert.assertTrue("Yanlış kupon numarası girilmesine rağmen sistem kuponu kabul etti. Test FAILED.", couponText.getText().contains(couponCheck));
 
@@ -237,7 +241,8 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement confirmBtn = driver.findElement(By.xpath("//input[@value='Confirm']"));
         confirmBtn.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Your order has been successfully processed!']")));
 
         WebElement confirmMsg = driver.findElement(By.xpath("//*[text()='Your order has been successfully processed!']"));
 
@@ -301,10 +306,10 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement changePasswordBtn = driver.findElement(By.xpath("//input[@value='Change password']"));
         changePasswordBtn.click();
-        MyFunc.wait(1);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("result")));
 
         WebElement passwordChangeConfirm = driver.findElement(By.className("result"));
-        MyFunc.wait(1);
 
         Assert.assertTrue("Şifre değiştirilemedi. Test FAILED.", passwordChangeConfirm.getText().contains(passwordChangeText));
 
