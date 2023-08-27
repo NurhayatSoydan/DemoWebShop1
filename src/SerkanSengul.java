@@ -20,7 +20,7 @@ import java.util.List;
 
 public class SerkanSengul extends BaseDriver {
     @Test
-    public void SiparisVerme() {
+    public void Ordering() {
 
         driver.get("https://demowebshop.tricentis.com/");
         Actions actions = new Actions(driver);
@@ -186,7 +186,7 @@ public class SerkanSengul extends BaseDriver {
     }
 
     @Test
-    public void SiparisIndirme() throws AWTException {
+    public void OrderDownload() throws AWTException {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
         Login.click();
@@ -229,7 +229,7 @@ public class SerkanSengul extends BaseDriver {
     }
 
     @Test
-    public void AnketYanitlama() {
+    public void SurveyAnswering() {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
         Login.click();
@@ -265,7 +265,7 @@ public class SerkanSengul extends BaseDriver {
     }
 
     @Test
-    public void UrunEklendiktenSonraAlisVeriseDevamEtme() {
+    public void Continue_Shopping_After_Adding_A_Product() {
 
         driver.get("https://demowebshop.tricentis.com/");
         WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
