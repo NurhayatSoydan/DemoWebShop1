@@ -23,46 +23,28 @@ public class SerkanSengul extends BaseDriver {
     public void Ordering() {
 
         driver.get("https://demowebshop.tricentis.com/");
-        Actions actions = new Actions(driver);
 
-        WebElement Register = driver.findElement(By.cssSelector("[href='/register']"));
-        Register.click();
+        WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
+        Login.click();
 
-        WebElement radiobutton = driver.findElement(By.id("gender-male"));
-        radiobutton.click();
+        WebElement Email = driver.findElement(By.name("Email"));
+        Email.sendKeys("serkansengul2@gmail.com");
 
-        WebElement FirstNaem = driver.findElement(By.id("FirstName"));
-        FirstNaem.sendKeys("serkan");
+        WebElement passowrd = driver.findElement(By.id("Password"));
+        passowrd.sendKeys("kobe21tmac");
 
-        WebElement LastName = driver.findElement(By.id("LastName"));
-        LastName.sendKeys("sengul");
-
-        WebElement Email = driver.findElement(By.id("Email"));
-        Email.sendKeys("has123@gmail.com");
-
-        WebElement password = driver.findElement(By.id("Password"));
-        password.sendKeys("kobe21tmac");
-
-        WebElement repassword = driver.findElement(By.id("ConfirmPassword"));
-        repassword.sendKeys("kobe21tmac");
-
-        WebElement registerbutton = driver.findElement(By.id("register-button"));
-        registerbutton.click();
+        WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
+        Login2.click();
 
         MyFunc.wait(1);
 
-        WebElement registerbtn= driver.findElement(By.xpath("(//input[@type='button'])[2]"));
-        registerbtn.click();
-        MyFunc.wait(1);
-
-
-        WebElement addProduct = driver.findElement(By.cssSelector("[alt='Picture of 14.1-inch Laptop']"));
-        addProduct.click();
-        MyFunc.wait(1);
-
-        WebElement AddToCart = driver.findElement(By.id("add-to-cart-button-31"));
+        WebElement AddToCart = driver.findElement(By.cssSelector("[alt='Picture of Build your own cheap computer']"));
         AddToCart.click();
+        MyFunc.wait(1);
 
+        WebElement addcart = driver.findElement(By.cssSelector("[id='add-to-cart-button-72']"));
+        addcart.click();
+        MyFunc.wait(1);
         WebElement ShoppingList = driver.findElement(By.xpath("(//span[@class='cart-label'])[1]"));
         ShoppingList.click();
         MyFunc.wait(2);
@@ -73,57 +55,16 @@ public class SerkanSengul extends BaseDriver {
 
         WebElement Checkout = driver.findElement(By.id("checkout"));
         Checkout.click();
-        MyFunc.wait(2);
-
-
-        WebElement Company = driver.findElement(By.id("BillingNewAddress_Company"));
-        Company.sendKeys("KardeslerKundura");
         MyFunc.wait(1);
 
-        WebElement SelectCountry = driver.findElement(By.id("BillingNewAddress_CountryId"));
-        actions.moveToElement(SelectCountry).click().perform();
-
-        Select select = new Select(SelectCountry);
-        select.selectByValue("2");
-
+        WebElement cont = driver.findElement(By.xpath("(//input[@type='button'])[2]"));
+        cont.click();
         MyFunc.wait(1);
 
-        WebElement SelectState = driver.findElement(By.id("BillingNewAddress_StateProvinceId"));
-        actions.moveToElement(SelectState).click().perform();
+        WebElement pickupsotre= driver.findElement(By.id("PickUpInStore"));
+        pickupsotre.click();
 
-        Select select1 = new Select(SelectState);
-        select1.selectByValue("63");
-
-        MyFunc.wait(1);
-        WebElement City = driver.findElement(By.id("BillingNewAddress_City"));
-        City.sendKeys("İzmir");
-
-        MyFunc.wait(1);
-        WebElement Adress = driver.findElement(By.id("BillingNewAddress_Address1"));
-        Adress.sendKeys("Cigli");
-        MyFunc.wait(1);
-
-        WebElement Adress1 = driver.findElement(By.id("BillingNewAddress_Address2"));
-        Adress1.sendKeys("Cigli");
-        MyFunc.wait(1);
-
-        WebElement ZipPostalCode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
-        ZipPostalCode.sendKeys("35000");
-        MyFunc.wait(1);
-
-        WebElement PhoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
-        PhoneNumber.sendKeys("5555202020");
-        MyFunc.wait(1);
-
-        WebElement FaxNumber = driver.findElement(By.id("BillingNewAddress_FaxNumber"));
-        FaxNumber.sendKeys("564214841");
-        MyFunc.wait(1);
-
-        WebElement Continue = driver.findElement(By.cssSelector("[onclick='Billing.save()']"));
-        Continue.click();
-        MyFunc.wait(1);
-
-        WebElement InStorePickUp = driver.findElement(By.id("PickUpInStore"));
+        WebElement InStorePickUp = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
         InStorePickUp.click();
         MyFunc.wait(1);
 
@@ -134,24 +75,19 @@ public class SerkanSengul extends BaseDriver {
         MyFunc.wait(1);
 
 
-        WebElement Button = driver.findElement(By.cssSelector("[onclick='Shipping.save()']"));
-        Button.click();
+        WebElement onclick= driver.findElement(By.cssSelector("[onclick='PaymentMethod.save()']"));
+        onclick.click();
+
+
+        WebElement cont5 = driver.findElement(By.xpath("(//input[@type='button'])[5]"));
+        cont5.click();
         MyFunc.wait(1);
 
-        WebElement Cash = driver.findElement(By.cssSelector("[id='paymentmethod_0']"));
-        Cash.click();
+        WebElement cont6 = driver.findElement(By.xpath("(//input[@type='button'])[6]"));
+        cont6.click();
         MyFunc.wait(1);
 
-        WebElement OnClick = driver.findElement(By.cssSelector("[onclick='PaymentMethod.save()']"));
-        OnClick.click();
-        MyFunc.wait(1);
 
-        WebElement Payment = driver.findElement(By.xpath("//div[@class='info']/*/*/*/*/*"));
-        Assert.assertTrue(Payment.isDisplayed());
-
-        WebElement click = driver.findElement(By.cssSelector("[onclick='PaymentInfo.save()']"));
-        click.click();
-        MyFunc.wait(1);
 
         List<WebElement> price = driver.findElements(By.xpath("(//span[@class='product-price'])"));
         double toplam = 0;
@@ -349,7 +285,6 @@ public class SerkanSengul extends BaseDriver {
         BekleVeKapat();
 
     }
-
 
 
 }
