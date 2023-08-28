@@ -61,7 +61,7 @@ public class SerkanSengul extends BaseDriver {
         cont.click();
         MyFunc.wait(1);
 
-        WebElement pickupsotre= driver.findElement(By.id("PickUpInStore"));
+        WebElement pickupsotre = driver.findElement(By.id("PickUpInStore"));
         pickupsotre.click();
 
         WebElement InStorePickUp = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
@@ -75,7 +75,7 @@ public class SerkanSengul extends BaseDriver {
         MyFunc.wait(1);
 
 
-        WebElement onclick= driver.findElement(By.cssSelector("[onclick='PaymentMethod.save()']"));
+        WebElement onclick = driver.findElement(By.cssSelector("[onclick='PaymentMethod.save()']"));
         onclick.click();
 
 
@@ -86,7 +86,6 @@ public class SerkanSengul extends BaseDriver {
         WebElement cont6 = driver.findElement(By.xpath("(//input[@type='button'])[6]"));
         cont6.click();
         MyFunc.wait(1);
-
 
 
         List<WebElement> price = driver.findElements(By.xpath("(//span[@class='product-price'])"));
@@ -122,7 +121,7 @@ public class SerkanSengul extends BaseDriver {
     }
 
     @Test
-    public void OrderDownload()  {
+    public void OrderDownload() throws AWTException {
         driver.get("https://demowebshop.tricentis.com/");
         WebElement Login = driver.findElement(By.cssSelector("[href='/login']"));
         Login.click();
@@ -145,12 +144,40 @@ public class SerkanSengul extends BaseDriver {
         MyFunc.wait(1);
         WebElement Details = driver.findElement(By.cssSelector("[class='button-2 order-details-button']"));
         Details.click();
-
-        WebElement PDFDocument = driver.findElement(By.cssSelector("[target='_blank']"));
+        MyFunc.wait(1);
+        WebElement PDFDocument = driver.findElement(By.cssSelector("[href='/orderdetails/pdf/1500574']"));
         PDFDocument.click();
 
+        Robot robot = new Robot();
+
+        for (int i = 0; i < 26; i++) {
+
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
+        MyFunc.wait(2);
+
+        robot.keyPress(KeyEvent.VK_SPACE);
+        robot.keyRelease(KeyEvent.VK_SPACE);
+
+        MyFunc.wait(2);
+        for (int i = 0; i < 5; i++) {
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
+
+        MyFunc.wait(2);
+        for (int i = 0; i < 3; i++) {
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        }
+
+        MyFunc.wait(2);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
 
         BekleVeKapat();
+
     }
 
     @Test
@@ -203,8 +230,8 @@ public class SerkanSengul extends BaseDriver {
         passowrd.sendKeys("kobe21tmac");
 
         WebElement Login2 = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
-       Login2.click();
-       MyFunc.wait(1);
+        Login2.click();
+        MyFunc.wait(1);
 
 
         WebElement AddToCart = driver.findElement(By.cssSelector("[alt='Picture of Build your own cheap computer']"));
@@ -217,9 +244,8 @@ public class SerkanSengul extends BaseDriver {
         MyFunc.wait(1);
 
 
-
         WebElement ShoppingCart = driver.findElement(By.xpath("(//a[@href='/cart'])[1]"));
-       ShoppingCart.click();
+        ShoppingCart.click();
 
         WebElement ContinueShopping = driver.findElement(By.name("continueshopping"));
         ContinueShopping.click();
@@ -227,11 +253,11 @@ public class SerkanSengul extends BaseDriver {
         WebElement Books = driver.findElement(By.xpath("(//a[@href='/books'])[3]"));
         Books.click();
 
-       WebElement ClickBook = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
+        WebElement ClickBook = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
         ClickBook.click();
 
 
-       WebElement ShoppingCartRe = driver.findElement(By.xpath("(//span[@class='cart-label'])[1]"));
+        WebElement ShoppingCartRe = driver.findElement(By.xpath("(//span[@class='cart-label'])[1]"));
         ShoppingCartRe.click();
 
         List<WebElement> Products = driver.findElements(By.cssSelector("[class='cart-item-row']"));
