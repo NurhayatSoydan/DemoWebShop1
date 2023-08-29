@@ -5,6 +5,7 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.interactions.Actions;
@@ -145,7 +146,7 @@ public class SerkanSengul extends BaseDriver {
         WebElement Details = driver.findElement(By.cssSelector("[class='button-2 order-details-button']"));
         Details.click();
         MyFunc.wait(1);
-        WebElement PDFDocument = driver.findElement(By.cssSelector("[href='/orderdetails/pdf/1500574']"));
+        WebElement PDFDocument = driver.findElement(By.cssSelector("[class='button-2 pdf-order-button']"));
         PDFDocument.click();
 
         Robot robot = new Robot();
@@ -264,7 +265,6 @@ public class SerkanSengul extends BaseDriver {
         for (WebElement po : Products) {
             System.out.println("Products = " + po.getText());
         }
-
         BekleVeKapat();
     }
 
