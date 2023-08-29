@@ -177,7 +177,7 @@ public class SerkanOzsahin extends BaseDriver {
 
         WebElement couponCode = driver.findElement(By.className("discount-coupon-code"));
         couponCode.sendKeys(couponNumbers);
-        MyFunc.wait(1);
+        MyFunc.wait(2);
 
         WebElement applyCoupon = driver.findElement(By.name("applydiscountcouponcode"));
         applyCoupon.click();
